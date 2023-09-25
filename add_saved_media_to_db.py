@@ -1,4 +1,3 @@
-# Import statements
 import os
 from datetime import datetime
 from dotenv import load_dotenv
@@ -12,9 +11,9 @@ from supabase_py import create_client, Client
 load_dotenv(".env.local")
 
 # Initialize Spotipy and Supabase clients
-sp = Spotify(auth_manager=SpotifyOAuth(client_id=os.getenv("SPOTIPY_CLIENT_ID"),
-                                       client_secret=os.getenv("SPOTIPY_CLIENT_SECRET"),
-                                       redirect_uri=os.getenv("SPOTIPY_REDIRECT_URI"),
+sp = Spotify(auth_manager=SpotifyOAuth(client_id=os.getenv("SPOTIFY_CLIENT_ID"),
+                                       client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
+                                       redirect_uri=os.getenv("SPOTIFY_REDIRECT_URI"),
                                        scope="user-library-read"))
 
 supabase_url = os.getenv("SUPABASE_URL")
