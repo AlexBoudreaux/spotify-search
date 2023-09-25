@@ -21,21 +21,21 @@ This script fetches your favorite Spotify artists, albums, and playlists and sto
 
 ## Installation
 
-\`\`\`bash
+```bash
 # Clone the repo
 git clone https://github.com/AlexBoudreax/spotify-search.git
 
 # Navigate into the directory
-cd spotify-data-saver
+cd spotify-search
 
 # Install dependencies
 pip3 install -r requirements.txt
 
 # Add your environment variables
 cp .env.sample .env.local
-\`\`\`
+```
 
-Edit \`.env.local\` with your own Spotify and Supabase credentials.
+Edit `.env.local` with your own Spotify and Supabase credentials.
 
 ---
 
@@ -43,9 +43,9 @@ Edit \`.env.local\` with your own Spotify and Supabase credentials.
 
 Run the script:
 
-\`\`\`bash
+```bash
 python3 add_saved_media_to_db.py
-\`\`\`
+```
 
 Your Spotify data will now be stored into your Supabase database.
 
@@ -53,7 +53,7 @@ Your Spotify data will now be stored into your Supabase database.
 
 ## Tech Stack
 
-- **Spotify Web API**: To fetch Spotify data.
+- **SpotiPy**: To fetch Spotify data.
 - **Supabase**: To store the fetched data.
 - **Python**: The backbone of this script.
 
