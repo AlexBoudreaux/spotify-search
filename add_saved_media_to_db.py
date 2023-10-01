@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 from dotenv import load_dotenv
+from collections import Counter
 
 from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
@@ -71,10 +72,26 @@ def get_playlists():
     
     while True:
         for item in results['items']:
+            playlist_id = item['id']
+            playlist_tracks = sp.playlist_tracks(playlist_id, fields='items(track(artists(id,name)))')
+            
+            # Collect artists
+            all_artists = []
+            for track_item in playlist_tracks['items']:
+                track_artists = track_item['track']['artists']
+                for artist in track_artists:
+                    all_artists.append((artist['id'], artist['name']))
+            
+            # Find 8 most featured artists
+            counter = Counter(all_artists)
+            most_common_artists = counter.most_common(8)
+            most_common_artists = [artist[0] for artist in most_common_artists]
+            
             playlist = {
                 'spotify_id': item['id'],
                 'name': item['name'],
-                'cover_image_url': item['images'][0]['url'] if item['images'] else None
+                'cover_image_url': item['images'][0]['url'] if item['images'] else None,
+                'artists': most_common_artists
             }
             playlists.append(playlist)
         
